@@ -1,0 +1,371 @@
+body {
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+.back-btn {
+  position: fixed;
+  top: 10px;
+  left: 15px;
+  background: linear-gradient(135deg, #ff6f61, #ffcc70);
+  border: none;
+  box-shadow: 0 0 10px rgba(255, 111, 97, 0.6);
+  transition: 0.3s;
+  z-index: 9;
+ 
+}
+
+.back-btn:hover {
+  box-shadow: 0 0 15px rgb(245, 217, 214);
+  transform: scale(1.1);
+}
+
+
+#menuItem a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#menuItem a::after {
+  content: "";
+  position: absolute;
+  top: 35px;
+  left: 5px;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff6f61, #ffcc70);
+  box-shadow: 0 0 10px rgba(255, 184, 97, 0.8);
+  transition: width 0.3s ease;
+  border-radius: 5px;
+}
+
+#menuItem a:hover::after {
+  width: 100%;
+}
+
+#menuItem a.active::after {
+  width: 100%;
+}
+
+
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.HomePagelogo,
+h1,
+h2,
+h3,
+h4,
+.aboutBlog {
+  font-family: "Playwrite AU QLD", serif !important;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.categoryName {
+  font-family: "Playwrite AU QLD", serif !important;
+}
+
+.navbar {
+  background: linear-gradient(90deg, #ff7a3b, #ff4260);
+  position: fixed !important;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
+}
+
+.navbar.shrink {
+  padding: 8px 0 !important;
+  background-color: rgb(35, 150, 146);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+nav {
+  height: 50px;
+}
+
+ul {
+  list-style: none;
+}
+
+.HomePagelogo {
+  width: 95px;
+  position: relative;
+  left: 15px;
+  bottom: 35px;
+}
+
+.logoName {
+  margin-left: -17px;
+  margin: 0;
+}
+
+.logo-sub {
+  font-size: 15px;
+  margin: 0;
+}
+
+.icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.navName {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+
+.navName:hover {
+  color: rgb(236, 242, 56) !important;
+}
+
+@keyframes shakeZoom {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+
+  20% {
+    transform: translateX(3px) scale(1.1);
+  }
+
+  40% {
+    transform: translateX(-3px) scale(1.05);
+  }
+
+  60% {
+    transform: translateX(2px) scale(1.1);
+  }
+
+  80% {
+    transform: translateX(-2px) scale(1.05);
+  }
+
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+
+.navbar .icon:hover {
+  animation: shakeZoom 0.6s ease-in-out;
+}
+
+
+.btn-modern {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: transform .28s ease, box-shadow .28s ease;
+  color: #fff;
+}
+
+.btn-modern:active {
+  transform: scale(.99);
+}
+
+.btn-diagonal-wipe {
+  background: linear-gradient(90deg, #ff7a3b, #ff4260);
+}
+
+.btn-diagonal-wipe::before {
+  content: "";
+  position: absolute;
+  width: 180%;
+  height: 220%;
+  left: -140%;
+  top: -20%;
+  background: rgba(255, 255, 255, 0.249);
+  transform: rotate(20deg);
+  transition: left .45s cubic-bezier(.2, .9, .2, 1);
+  z-index: 0;
+}
+
+.btn-diagonal-wipe span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-diagonal-wipe:hover::before {
+  left: -20%;
+}
+
+.btn-glow-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.215) !important;
+  color: #fff;
+}
+
+.btn-glow-outline:hover {
+  box-shadow: 0 8px 28px rgba(32, 201, 151, 0.18), 0 2px 8px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.btn-glow {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: #fff;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 10px 30px rgba(255, 75, 75, 0.18);
+  transform: translateY(-5px);
+}
+
+img {
+  object-fit: cover;
+}
+
+.options {
+  margin-top: 100px;
+  position: relative;
+  background: linear-gradient(135deg, #65acf2, #9df3bf);
+  color: #fff;
+}
+
+.menuOption {
+  width: 150px;
+}
+
+.recipe-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #fff;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  background-color: white;
+}
+
+
+.recipe-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.719), rgba(239, 242, 243, 0));
+}
+
+.recipe-card:hover img {
+  transform: scale(1.05);
+}
+
+.play-btn {
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+  background: rgba(24, 218, 244, 0.764);
+  padding: 12px 18px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.recipe-card:hover .play-btn {
+  opacity: 1;
+}
+
+.category {
+  background-color: #f5f2e2;
+  color: rgb(23, 173, 168);
+}
+
+.aboutBlog {
+  background-color: rgb(250, 250, 250);
+
+}
+
+.aboutHeading,
+.blogHeading {
+  color: rgb(239, 122, 49) !important;
+}
+
+.blogImage {
+  width: 200px;
+  height: 200px;
+}
+
+.read:hover {
+  text-decoration: underline;
+  color: rgb(47, 193, 188);
+}
+
+.blog-para {
+  line-height: 2;
+}
+
+.footer {
+  background: linear-gradient(90deg, #ff7a3b, #ff4260);
+  font-family: "Playwrite AU QLD", cursive;
+}
+
+.footer h3 {
+  color: white;
+}
+
+.footer-tagline {
+  font-size: 0.95rem;
+  color: #f5f2e2;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: rgb(236, 242, 56)!important;
+}
+
+.footer-social a {
+  display: inline-block;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: transform 0.6s ease, color 0.6s ease;
+}
+
+.footer-social a:hover {
+  transform: rotateY(180deg);
+  color: rgb(236, 242, 56)!important;
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: #f5f2e2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.like-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: none;
+  color: #44f6fc;
+  transition: all 0.3s ease;
+  z-index: 0;
+}
+
+.like-btn.liked {
+  color: red;
+  transform: scale(1.2);
+}

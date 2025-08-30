@@ -1,0 +1,387 @@
+body {
+  font-family: "Poppins", Arial, sans-serif;
+}
+.back-btn {
+  position: fixed;
+  top: 10px;
+  left: 15px;
+  background: linear-gradient(135deg, #ff6f61, #ffcc70);
+  border: none;
+  box-shadow: 0 0 10px rgba(255, 111, 97, 0.6);
+  transition: 0.3s;
+  z-index: 9;
+ 
+}
+
+.back-btn:hover {
+  box-shadow: 0 0 15px rgb(245, 217, 214);
+  transform: scale(1.1);
+}
+#menuItem a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#menuItem a::after {
+  content: "";
+  position: absolute;
+  top: 35px;
+  left: 5px;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff6f61, #ffcc70);
+  box-shadow: 0 0 10px rgba(255, 184, 97, 0.8);
+  transition: width 0.3s ease;
+  border-radius: 5px;
+}
+
+#menuItem a:hover::after {
+  width: 100%;
+}
+
+#menuItem a.active::after {
+  width: 100%;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.HomePagelogo,
+h1,
+h2,
+h3,
+h4,
+.aboutBlog {
+  font-family: "Playwrite AU QLD", serif !important;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.navbar {
+  background: linear-gradient(90deg, #ff7a3b, #ff4260);
+  position: fixed !important;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
+
+}
+
+.navbar.shrink {
+  padding: 8px 0 !important;
+  background-color: rgb(35, 150, 146);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+nav {
+  height: 50px;
+}
+
+ul {
+  list-style: none;
+}
+
+.HomePagelogo {
+  width: 95px;
+  position: relative;
+  left: 15px;
+  bottom: 35px;
+}
+
+.logoName {
+  margin-left: -17px;
+  margin: 0;
+}
+
+.logo-sub {
+  font-size: 15px;
+  margin: 0;
+}
+
+.icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.navName {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+
+.navName:hover {
+  color: rgb(236, 242, 56) !important;
+}
+
+@keyframes shakeZoom {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+
+  20% {
+    transform: translateX(3px) scale(1.1);
+  }
+
+  40% {
+    transform: translateX(-3px) scale(1.05);
+  }
+
+  60% {
+    transform: translateX(2px) scale(1.1);
+  }
+
+  80% {
+    transform: translateX(-2px) scale(1.05);
+  }
+
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+
+.navbar .icon:hover {
+  animation: shakeZoom 0.6s ease-in-out;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  display: flex;
+  perspective: 4000px;
+}
+
+.hero-img {
+  width: 100%;
+  background-size: cover;
+  transition: transform 0.1s ease;
+  transform-style: preserve-3d;
+}
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.44);
+  position: absolute;
+  top: 45%;
+  width: 40%;
+  left: 50%;
+  z-index: 1;
+}
+
+.recipe-info div {
+  background-color: #3232327c;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.need {
+  background-color: #eff7fb !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.ingredients {
+  background-color: #eff7fb !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ingredients ul {
+  list-style: none;
+}
+
+.instructionhead {
+  color: rgb(23, 173, 168);
+}
+
+.instructions {
+  background-color: #eff7fb !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  background-color: #f5f2e2;
+}
+
+.aboutBlog {
+  background-color: rgb(236, 226, 213);
+
+}
+
+.aboutHeading,
+.blogHeading {
+  color: rgb(239, 122, 49) !important;
+}
+
+
+.blogImage {
+  width: 200px;
+  height: 200px;
+}
+
+.read:hover {
+  text-decoration: underline;
+  color: rgb(47, 193, 188);
+}
+
+.blog-para {
+  line-height: 2;
+}
+
+.footer {
+  background: linear-gradient(90deg, #ff7a3b, #ff4260);
+  font-family: "Playwrite AU QLD", cursive;
+}
+
+.footer h3 {
+  color: white;
+}
+
+.footer-tagline {
+  font-size: 0.95rem;
+  color: #f5f2e2;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: rgb(236, 242, 56);
+}
+
+.footer-social a {
+  display: inline-block;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: transform 0.6s ease, color 0.6s ease;
+}
+
+.footer-social a:hover {
+  transform: rotateY(180deg);
+  color: rgb(236, 242, 56);
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: #f5f2e2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#feedbackBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+#feedbackBtn:hover {
+  transform: scale(1.1);
+}
+
+
+.feedback-form {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+}
+
+.form-content {
+  background: linear-gradient(90deg, #ff7a3b, #ff4260);
+  position: relative;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.5s ease;
+  width: 30%;
+}
+
+.form-content textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+
+}
+
+.form-content button {
+  background: #11d03e;
+  color: white;
+  border: none;
+
+}
+
+.form-content button:hover {
+  background: #08fd3d;
+}
+
+textarea {
+  background-color: #3333333d;
+  color: white;
+
+}
+
+
+#closeForm {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #25e752;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 15px;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 3000;
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
+}
+
+#toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 60px;
+}
