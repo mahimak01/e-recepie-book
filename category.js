@@ -6,8 +6,8 @@ window.addEventListener('scroll', () => {
 });
 //for slection of category
 document.addEventListener("DOMContentLoaded", () => {
-  const categoryButtons = document.querySelectorAll(".categoryButton");   
-  const categorySections = document.querySelectorAll(".categorySection"); 
+  const categoryButtons = document.querySelectorAll(".categoryButton");
+  const categorySections = document.querySelectorAll(".categorySection");
   const params = new URLSearchParams(window.location.search);
   const urlCategory = params.get("type");
 
@@ -27,14 +27,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (category === "all" || card.getAttribute("data-category") === category) {
         card.style.display = "block";
       } else {
-        card.style.display = "none";  
+        card.style.display = "none";
       }
     });
   }
+  
 });
+
 //for active  page
 document.addEventListener("DOMContentLoaded", () => {
-  const currentPage = window.location.pathname.split("/").pop(); 
+  const currentPage = window.location.pathname.split("/").pop();
   const menuLinks = document.querySelectorAll("#menuItem a");
 
   menuLinks.forEach(link => {
@@ -42,21 +44,22 @@ document.addEventListener("DOMContentLoaded", () => {
       link.classList.add("active");
     }
   });
-//on click recipe card
-const recipeCards = document.querySelectorAll(".recipe-card");
-recipeCards.forEach(card => {
-  card.addEventListener("click", () => {
-    window.location.href = "method.html"; 
+  //on click recipe card
+  const recipeCards = document.querySelectorAll(".recipe-card");
+  recipeCards.forEach(card => {
+    card.addEventListener("click", () => {
+      window.location.href = "method.html";
+    });
   });
-});
-//backbtn
-document.getElementById("backBtn").addEventListener("click", () => {
-  if (window.history.length > 1) {
-    window.history.back();
-  } else {
-    window.location.href = "homePage.html";
-  }
-});
+  //backbtn
+  document.getElementById("backBtn").addEventListener("click", () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "homePage.html";
+    }
+  });
+  
 });
 //like btn
 document.addEventListener("DOMContentLoaded", () => {
@@ -89,6 +92,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const aboutBtn = document.getElementById("aboutBtn");
+    if (aboutBtn) {
+        aboutBtn.addEventListener("click", () => {
+            window.location.href = "about.html";
+        });
+    }
 
+    const moreBtn = document.getElementById("moreBtn");
+    if (moreBtn) {
+        moreBtn.addEventListener("click", () => {
+            window.location.href = "blog.html";
+        });
+    }
+})
+// on clik on continue btn
+document.addEventListener("DOMContentLoaded", () => {
+  const continueButtons = document.querySelectorAll(".continue-btn");
+
+  continueButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const blogId = button.getAttribute("data-id"); 
+      window.location.href = `blogDetail.html?id=${blogId}`;
+    });
+  });
+});
 
 
