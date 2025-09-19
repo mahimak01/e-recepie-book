@@ -1,65 +1,56 @@
-const hero = document.querySelector('.hero');
-const heroImg = document.querySelector('.hero-img');
-//for image movement
-hero.addEventListener('mousemove', (e) => {
-  const { offsetWidth, offsetHeight } = hero;
-  const x = e.offsetX - offsetWidth / 5;   
-  const y = e.offsetY - offsetHeight / 5;  
-
-  const rotateX = (y / offsetHeight) * 60;
-  const rotateY = (x / offsetWidth) * -60; 
-
-  heroImg.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+// Back button functionality
+document.getElementById("backBtn").addEventListener("click", () => {
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = "homePage.html";
+  }
 });
 
-hero.addEventListener('mouseleave', () => {
-  // Reset 
-  heroImg.style.transform = "rotateX(0deg) rotateY(0deg)";
-});
+//  Feedback Form functionality
 const feedbackBtn = document.getElementById("feedbackBtn");
 const feedbackForm = document.getElementById("feedbackForm");
 const closeForm = document.getElementById("closeForm");
 const feedbackDataForm = document.getElementById("feedbackDataForm");
 const toast = document.getElementById("toast");
 
-// feedback form
-feedbackBtn.addEventListener("click", () => {
-  feedbackForm.style.display = "flex";
-});
+if (feedbackBtn) {
+  feedbackBtn.addEventListener("click", () => {
+    feedbackForm.style.display = "flex";
+  });
 
-closeForm.addEventListener("click", () => {
-  feedbackForm.style.display = "none";
-});
-
-feedbackForm.addEventListener("click", (e) => {
-  if (e.target === feedbackForm) {
+  closeForm.addEventListener("click", () => {
     feedbackForm.style.display = "none";
-  }
-});
+  });
 
-feedbackDataForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+  feedbackForm.addEventListener("click", (e) => {
+    if (e.target === feedbackForm) {
+      feedbackForm.style.display = "none";
+    }
+  });
 
-  const recipeChoice = document.querySelector('input[name="recipe"]:checked').value;
-  const suggestion = document.getElementById("suggestion").value;
+  feedbackDataForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  const feedback = {
-    recipeChoice,
-    suggestion,
-    date: new Date().toLocaleString()
-  };
+    const recipeChoice = document.querySelector('input[name="recipe"]:checked').value;
+    const suggestion = document.getElementById("suggestion").value;
 
-  let feedbackList = JSON.parse(localStorage.getItem("feedbackList")) || [];
-  feedbackList.push(feedback);
-  localStorage.setItem("feedbackList", JSON.stringify(feedbackList));
+    const feedback = {
+      recipeChoice,
+      suggestion,
+      date: new Date().toLocaleString()
+    };
 
-  feedbackDataForm.reset();
+    let feedbackList = JSON.parse(localStorage.getItem("feedbackList")) || [];
+    feedbackList.push(feedback);
+    localStorage.setItem("feedbackList", JSON.stringify(feedbackList));
 
-  feedbackForm.style.display = "none";
-  showToast("Thank you for your feedback!");
-});
+    feedbackDataForm.reset();
+    feedbackForm.style.display = "none";
+    showToast("Thank you for your feedback!");
+  });
+}
 
-// Toast function
 function showToast(message) {
   toast.innerText = message;
   toast.className = "show";
@@ -67,22 +58,74 @@ function showToast(message) {
     toast.className = toast.className.replace("show", "");
   }, 3000);
 }
-//active page
-document.addEventListener("DOMContentLoaded", () => {
-  const currentPage = window.location.pathname.split("/").pop(); 
-  const menuLinks = document.querySelectorAll("#menuItem a");
 
-  menuLinks.forEach(link => {
-    if (link.getAttribute("href") === currentPage) {
-      link.classList.add("active");
+document.addEventListener("DOMContentLoaded", async () => {
+  const BASE_URL = "http://localhost:3000";
+  const params = new URLSearchParams(window.location.search); // read ?id=... [6]
+  const id = params.get("id");
+
+  let recipe = null;
+
+  if (id) {
+    try {
+      const res = await fetch(`${BASE_URL}/api/recipes/${encodeURIComponent(id)}`, {
+        headers: { Accept: "application/json" }
+      }); // Fetch API [3]
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      recipe = await res.json();
+    } catch (err) {
+      console.error("Detail fetch error:", err);
+      alert("Could not load recipe by id, trying saved selection...");
     }
-  });
-});
-//backbtn
-document.getElementById("backBtn").addEventListener("click", () => {
-  if (window.history.length > 1) {
-    window.history.back();
-  } else {
+  }
+
+  if (!recipe) {
+    try { recipe = JSON.parse(localStorage.getItem("selectedRecipe")); } // localStorage parse [11]
+    catch { recipe = null; }
+  }
+
+  if (!recipe) {
+    alert("No recipe found. Please search again.");
     window.location.href = "homePage.html";
+    return;
+  }
+
+  // Render into DOM
+  const heroImg = document.querySelector(".hero-img");
+  const heroTitle = document.querySelector(".hero-content h2");
+  const heroDesc = document.querySelector(".hero-content p");
+  const heroInfo = document.querySelector(".recipe-info");
+
+  if (heroImg) {
+    heroImg.src = recipe.image || recipe.imageUrl || "/Images/default.jpg";
+    heroImg.style.width = "100%";
+    heroImg.style.height = "100%";
+    heroImg.style.objectFit = "cover";
+  }
+  if (heroTitle) heroTitle.textContent = recipe.name || "Recipe Name";
+  if (heroDesc) heroDesc.textContent = recipe.description || "Delicious recipe.";
+  if (heroInfo) {
+    heroInfo.innerHTML = `
+      <div class="px-2 py-1 rounded-3 text-white">🍴 Category: ${recipe.category?.name || recipe.category || "N/A"}</div>
+      <div class="px-2 py-1 rounded-3 text-white">⏰ Time: ${recipe.time || "N/A"}</div>
+    `;
+  }
+
+  const ingList = document.querySelector(".ingredients ul");
+  if (ingList && Array.isArray(recipe.ingredients)) {
+    ingList.innerHTML = recipe.ingredients.map(ing => `<li class="py-2">${String(ing)}</li>`).join("");
+  }
+
+  const instrDiv = document.querySelector(".instructions");
+  if (instrDiv && Array.isArray(recipe.steps)) {
+    instrDiv.innerHTML = `
+      <h3 class="instructionhead mb-4">Instructions</h3>
+      ${recipe.steps.map((s, i) => `<p><strong>Step ${i + 1}:</strong> ${String(s)}</p>`).join("")}
+    `;
+  }
+
+  const needList = document.querySelector(".need ul");
+  if (needList && Array.isArray(recipe.requirements)) {
+    needList.innerHTML = recipe.requirements.map(req => `<li>- ${String(req)}</li>`).join("");
   }
 });
